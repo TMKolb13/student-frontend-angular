@@ -7,21 +7,21 @@ import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service'
 
 @Component({
-  selector: 'app-student-form',
-  templateUrl: './student-form.component.html',
-  styleUrls: ['./student-form.component.css']
+  selector: 'app-assignment-form',
+  templateUrl: './assignment-form.component.html',
+  styleUrls: ['./assignment-form.component.css']
 })
-export class StudentFormComponent implements OnInit {
+export class AssignmentFormComponent implements OnInit {
 
   successMessage: string;
   errorMessage: string;
 
-  student: object;
+  assignment: object;
 
   getRecordForEdit(){
     this.route.params
-      .switchMap((params: Params) => this.dataService.getRecord("student", +params['id']))
-      .subscribe(student => this.student = student);
+      .switchMap((params: Params) => this.dataService.getRecord("assignment", +params['id']))
+      .subscribe(assignment => this.assignment = assignment);
   }
 
   constructor(
@@ -38,18 +38,18 @@ export class StudentFormComponent implements OnInit {
 
   }
 
-  saveStudent(student: NgForm){
-    if(typeof student.value.student_id === "number"){
-      this.dataService.editRecord("student", student.value, student.value.student_id)
+  saveAssignment(assignment: NgForm){
+    if(typeof assignment.value.assignment_id === "number"){
+      this.dataService.editRecord("assignment", assignment.value, assignment.value.assignment_id)
           .subscribe(
-            student => this.successMessage = "Record updated successfully",
+            assignment => this.successMessage = "Record updated successfully",
             error =>  this.errorMessage = <any>error);
     }else{
-      this.dataService.addRecord("student", student.value)
+      this.dataService.addRecord("assignment", assignment.value)
           .subscribe(
-            student => this.successMessage = "Record added successfully",
+            assignment => this.successMessage = "Record added successfully",
             error =>  this.errorMessage = <any>error);
-            this.student = {};
+            this.assignment = {};
     }
 
   }

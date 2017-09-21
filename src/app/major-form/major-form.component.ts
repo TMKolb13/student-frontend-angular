@@ -7,21 +7,21 @@ import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service'
 
 @Component({
-  selector: 'app-student-form',
-  templateUrl: './student-form.component.html',
-  styleUrls: ['./student-form.component.css']
+  selector: 'app-major-form',
+  templateUrl: './major-form.component.html',
+  styleUrls: ['./major-form.component.css']
 })
-export class StudentFormComponent implements OnInit {
+export class MajorFormComponent implements OnInit {
 
   successMessage: string;
   errorMessage: string;
 
-  student: object;
+  majorData: object;
 
   getRecordForEdit(){
     this.route.params
-      .switchMap((params: Params) => this.dataService.getRecord("student", +params['id']))
-      .subscribe(student => this.student = student);
+      .switchMap((params: Params) => this.dataService.getRecord("major", +params['id']))
+      .subscribe(majorData => this.majorData = majorData);
   }
 
   constructor(
@@ -38,18 +38,18 @@ export class StudentFormComponent implements OnInit {
 
   }
 
-  saveStudent(student: NgForm){
-    if(typeof student.value.student_id === "number"){
-      this.dataService.editRecord("student", student.value, student.value.student_id)
+  saveMajor(majorData: NgForm){
+    if(typeof majorData.value.major_id === "number"){
+      this.dataService.editRecord("major", majorData.value, majorData.value.major_id)
           .subscribe(
-            student => this.successMessage = "Record updated successfully",
+            major => this.successMessage = "Record updated successfully",
             error =>  this.errorMessage = <any>error);
     }else{
-      this.dataService.addRecord("student", student.value)
+      this.dataService.addRecord("major", majorData.value)
           .subscribe(
-            student => this.successMessage = "Record added successfully",
+            majorData => this.successMessage = "Record added successfully",
             error =>  this.errorMessage = <any>error);
-            this.student = {};
+            this.majorData = {};
     }
 
   }

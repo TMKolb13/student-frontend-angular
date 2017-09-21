@@ -7,21 +7,21 @@ import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service'
 
 @Component({
-  selector: 'app-student-form',
-  templateUrl: './student-form.component.html',
-  styleUrls: ['./student-form.component.css']
+  selector: 'app-studentclass-form',
+  templateUrl: './studentclass-form.component.html',
+  styleUrls: ['./studentclass-form.component.css']
 })
-export class StudentFormComponent implements OnInit {
+export class StudentclassFormComponent implements OnInit {
 
   successMessage: string;
   errorMessage: string;
 
-  student: object;
+  studentclass: object;
 
   getRecordForEdit(){
     this.route.params
-      .switchMap((params: Params) => this.dataService.getRecord("student", +params['id']))
-      .subscribe(student => this.student = student);
+      .switchMap((params: Params) => this.dataService.getRecord("studentclass", +params['id']))
+      .subscribe(studentclass => this.studentclass = studentclass);
   }
 
   constructor(
@@ -38,18 +38,18 @@ export class StudentFormComponent implements OnInit {
 
   }
 
-  saveStudent(student: NgForm){
-    if(typeof student.value.student_id === "number"){
-      this.dataService.editRecord("student", student.value, student.value.student_id)
+  saveStudentclass(studentclass: NgForm){
+    if(typeof studentclass.value.student_class_id === "number"){
+      this.dataService.editRecord("studentclass", studentclass.value, studentclass.value.student_class_id)
           .subscribe(
-            student => this.successMessage = "Record updated successfully",
+            studentclass => this.successMessage = "Record updated successfully",
             error =>  this.errorMessage = <any>error);
     }else{
-      this.dataService.addRecord("student", student.value)
+      this.dataService.addRecord("studentclass", studentclass.value)
           .subscribe(
-            student => this.successMessage = "Record added successfully",
+            studentclass => this.successMessage = "Record added successfully",
             error =>  this.errorMessage = <any>error);
-            this.student = {};
+            this.studentclass = {};
     }
 
   }

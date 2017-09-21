@@ -7,21 +7,21 @@ import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service'
 
 @Component({
-  selector: 'app-student-form',
-  templateUrl: './student-form.component.html',
-  styleUrls: ['./student-form.component.css']
+  selector: 'app-grade-form',
+  templateUrl: './grade-form.component.html',
+  styleUrls: ['./grade-form.component.css']
 })
-export class StudentFormComponent implements OnInit {
+export class GradeFormComponent implements OnInit {
 
   successMessage: string;
   errorMessage: string;
 
-  student: object;
+  grade: object;
 
   getRecordForEdit(){
     this.route.params
-      .switchMap((params: Params) => this.dataService.getRecord("student", +params['id']))
-      .subscribe(student => this.student = student);
+      .switchMap((params: Params) => this.dataService.getRecord("grade", +params['id']))
+      .subscribe(grade => this.grade = grade);
   }
 
   constructor(
@@ -38,18 +38,18 @@ export class StudentFormComponent implements OnInit {
 
   }
 
-  saveStudent(student: NgForm){
-    if(typeof student.value.student_id === "number"){
-      this.dataService.editRecord("student", student.value, student.value.student_id)
+  saveGrade(grade: NgForm){
+    if(typeof grade.value.grade_id === "number"){
+      this.dataService.editRecord("grade", grade.value, grade.value.grade_id)
           .subscribe(
-            student => this.successMessage = "Record updated successfully",
+            grade => this.successMessage = "Record updated successfully",
             error =>  this.errorMessage = <any>error);
     }else{
-      this.dataService.addRecord("student", student.value)
+      this.dataService.addRecord("grade", grade.value)
           .subscribe(
-            student => this.successMessage = "Record added successfully",
+            grade => this.successMessage = "Record added successfully",
             error =>  this.errorMessage = <any>error);
-            this.student = {};
+            this.grade = {};
     }
 
   }

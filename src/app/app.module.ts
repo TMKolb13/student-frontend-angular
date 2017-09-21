@@ -15,6 +15,21 @@ import { DataService } from './data.service';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 import { StudentFormComponent } from './student-form/student-form.component';
 import { StatusMessageComponent } from './status-message/status-message.component';
+import { AssignmentComponent } from './assignment/assignment.component';
+import { AssignmentFormComponent } from './assignment-form/assignment-form.component';
+import { GradeComponent } from './grade/grade.component';
+import { GradeFormComponent } from './grade-form/grade-form.component';
+import { ClassComponent } from './class/class.component';
+import { ClassFormComponent } from './class-form/class-form.component';
+import { InstructorComponent } from './instructor/instructor.component';
+import { InstructorFormComponent } from './instructor-form/instructor-form.component';
+import { MajorComponent } from './major/major.component';
+import { MajorFormComponent } from './major-form/major-form.component';
+import { MajorclassComponent } from './majorclass/majorclass.component';
+import { MajorclassFormComponent } from './majorclass-form/majorclass-form.component';
+import { StudentclassComponent } from './studentclass/studentclass.component';
+import { StudentclassFormComponent } from './studentclass-form/studentclass-form.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +39,22 @@ import { StatusMessageComponent } from './status-message/status-message.componen
     HomeComponent,
     DeleteConfirmComponent,
     StudentFormComponent,
-    StatusMessageComponent
+    StatusMessageComponent,
+    AssignmentComponent,
+    AssignmentFormComponent,
+    GradeComponent,
+    GradeFormComponent,
+    ClassComponent,
+    ClassFormComponent,
+    InstructorComponent,
+    InstructorFormComponent,
+    MajorComponent,
+    MajorFormComponent,
+    MajorclassComponent,
+    MajorclassFormComponent,
+    StudentclassComponent,
+    StudentclassFormComponent,
+
   ],
   imports: [
     BrowserModule,

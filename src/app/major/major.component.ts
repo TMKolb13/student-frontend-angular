@@ -5,37 +5,37 @@ import { DataService } from '../data.service'
 import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component'
 
 @Component({
-  selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrls: ['./student.component.css'],
+  selector: 'app-major',
+  templateUrl: './major.component.html',
+  styleUrls: ['./major.component.css']
 })
-export class StudentComponent implements OnInit {
+export class MajorComponent implements OnInit {
 
   errorMessage: string;
   successMessage: string;
-  students: any[];
+  majors: any[];
   mode = 'Observable';
  
   constructor (private dataService: DataService, public dialog: MdDialog) {}
  
-  ngOnInit() { this.getStudents(); }
+  ngOnInit() { this.getMajors(); }
  
-  getStudents() {
-    this.dataService.getRecords("student")
+  getMajors() {
+    this.dataService.getRecords("major")
       .subscribe(
-        students => this.students = students,
+        majors => this.majors = majors,
         error =>  this.errorMessage = <any>error);
   }
 
-  deleteStudent(id:number) {
+  deleteMajor(id:number) {
 
     let dialogRef = this.dialog.open(DeleteConfirmComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.dataService.deleteRecord("student", id)
+        this.dataService.deleteRecord("major", id)
           .subscribe(
-            student => {this.successMessage = "Record(s) deleted successfully"; this.getStudents(); },
+            major => {this.successMessage = "Record(s) deleted successfully"; this.getMajors(); },
             error =>  this.errorMessage = <any>error);
       }
     });
