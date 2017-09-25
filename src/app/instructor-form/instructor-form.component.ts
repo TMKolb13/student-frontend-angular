@@ -5,11 +5,13 @@ import { Location }               from '@angular/common';
 import { NgForm } from '@angular/forms';
 
 import { DataService } from '../data.service'
+import { fadeInAnimation } from '../animation/fade-in.animation';
 
 @Component({
   selector: 'app-instructor-form',
   templateUrl: './instructor-form.component.html',
-  styleUrls: ['./instructor-form.component.css']
+  styleUrls: ['./instructor-form.component.css'],
+  animations: [fadeInAnimation]    
 })
 export class InstructorFormComponent implements OnInit {
 

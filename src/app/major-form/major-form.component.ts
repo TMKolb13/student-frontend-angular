@@ -5,11 +5,14 @@ import { Location }               from '@angular/common';
 import { NgForm } from '@angular/forms';
 
 import { DataService } from '../data.service'
+import { fadeInAnimation } from '../animation/fade-in.animation';
+
 
 @Component({
   selector: 'app-major-form',
   templateUrl: './major-form.component.html',
-  styleUrls: ['./major-form.component.css']
+  styleUrls: ['./major-form.component.css'],
+  animations: [fadeInAnimation]    
 })
 export class MajorFormComponent implements OnInit {
 

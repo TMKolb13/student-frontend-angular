@@ -5,11 +5,14 @@ import { Location }               from '@angular/common';
 import { NgForm } from '@angular/forms';
 
 import { DataService } from '../data.service'
+import { fadeInAnimation } from '../animation/fade-in.animation';
+
 
 @Component({
   selector: 'app-assignment-form',
   templateUrl: './assignment-form.component.html',
-  styleUrls: ['./assignment-form.component.css']
+  styleUrls: ['./assignment-form.component.css'],
+  animations: [fadeInAnimation]    
 })
 export class AssignmentFormComponent implements OnInit {
 
