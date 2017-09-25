@@ -1,5 +1,5 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit }      from '@angular/core';
+import { Component, OnInit, ViewChild }      from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 import { NgForm } from '@angular/forms';
@@ -12,6 +12,9 @@ import { DataService } from '../data.service'
   styleUrls: ['./instructor-form.component.css']
 })
 export class InstructorFormComponent implements OnInit {
+
+  instructorForm: NgForm;
+  @ViewChild('instructorForm') currentForm: NgForm;
 
   successMessage: string;
   errorMessage: string;
@@ -53,5 +56,64 @@ export class InstructorFormComponent implements OnInit {
     }
 
   }
+
+  ngAfterViewChecked() {
+    this.formChanged();
+  }
+
+  formChanged() {
+    this.instructorForm = this.currentForm;
+    this.instructorForm.valueChanges
+      .subscribe(
+        data => this.onValueChanged(data)
+      );
+  }
+
+  onValueChanged(data?: any) {
+    let form = this.instructorForm.form;
+
+    for (let field in this.formErrors) {
+      // clear previous error message (if any)
+      this.formErrors[field] = '';
+      const control = form.get(field);
+
+      if (control && control.dirty && !control.valid) {
+        const messages = this.validationMessages[field];
+        for (const key in control.errors) {
+          this.formErrors[field] += messages[key] + ' ';
+        }
+      }
+    }
+  }
+
+  formErrors = {
+    'first_name': '',
+    'last_name': '',
+    'major_id': '',
+    'years_of_experience': '',
+    'tenured': ''
+  };
+
+  validationMessages = {
+    'first_name': {
+      'required': 'First name is required.',
+      'minlength': 'First name must be at least 2 characters long.',
+      'maxlength': 'First name cannot be more than 30 characters long.'
+    },
+    'last_name': {
+      'required': 'Last name is required.',
+      'minlength': 'Last name must be at least 2 characters long.',
+      'maxlength': 'Last name cannot be more than 30 characters long.'
+    },
+    'major_id': {
+      'required': 'Major ID is required.'
+    },
+    'years_of_experience': {
+      'required': 'Years of experience is required.'
+    },
+    'tenured': {
+      'required': 'Tenured is required.'
+    }
+  };
 
 }

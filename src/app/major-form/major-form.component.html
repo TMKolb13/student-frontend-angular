@@ -17,18 +17,24 @@
 <div class="form-group">
   <label for="major" class="col-sm-2 control-label">Major</label>
   <div class="col-sm-10">
-    <input [ngModel]="majorData?.major" ngModel #major="ngModel" type="text" class="form-control" id="major" name="major" placeholder="Ex. English" required>
+    <input [ngModel]="majorData?.major" ngModel #major="ngModel" type="text" class="form-control" id="major" name="major" placeholder="Ex. English" required minlength="2" maxlength="30">
+    <span *ngIf="formErrors.major" class="text-danger">
+      {{ formErrors.major }}
+    </span>
   </div>
 </div>
 <div class="form-group">
   <label for="sat" class="col-sm-2 control-label">SAT Score</label>
   <div class="col-sm-10">
-    <input [ngModel]="majorData?.sat" ngModel #sat="ngModel" type="text" class="form-control" id="sat" name="sat" placeholder="1400">
+    <input [ngModel]="majorData?.sat" ngModel #sat="ngModel" type="text" class="form-control" id="sat" name="sat" placeholder="1400" required maxlength="4">
+    <span *ngIf="formErrors.sat" class="text-danger">
+      {{ formErrors.sat }}
+    </span>
   </div>
 </div>
  <div class="form-group">
   <div class="col-sm-offset-2 col-sm-10">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button [disabled]="!majorForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
   </div>
 </div>
 </form>
